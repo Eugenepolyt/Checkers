@@ -1,6 +1,6 @@
 package com.jyka.view
 
-import com.jyka.logic.ChessBoard
+import com.jyka.logic.Board
 import com.jyka.logic.pieces.*
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
@@ -18,7 +18,7 @@ class MainView : View("ChesterChess") {
 
     private var checkEat = false
 
-    private val gameBoard = ChessBoard()
+    private val gameBoard = Board()
 
     private val stack = MutableList(8) { MutableList(8) { Rectangle() to ImageView() } }
 
@@ -131,12 +131,12 @@ class MainView : View("ChesterChess") {
             }
             if (shouldBeat.isNotEmpty() && row to column in shouldBeat) {
                 pieceChosen = true
-                movies = gameBoard.getPossibleMovies(row, column).toMutableList()
+                movies = gameBoard.getPossibleMoves(row, column).toMutableList()
                 checkEat = true
                 enableHint()
             } else if (shouldBeat.isEmpty()) {
                 pieceChosen = true
-                movies = gameBoard.getPossibleMovies(row, column).toMutableList()
+                movies = gameBoard.getPossibleMoves(row, column).toMutableList()
                 enableHint()
             }
             shouldBeat.clear()

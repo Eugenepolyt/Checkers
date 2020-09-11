@@ -1,12 +1,12 @@
 package com.jyka.logic.pieces
 
-import com.jyka.logic.ChessBoard
+import com.jyka.logic.Board
 
 abstract class Piece(Color: PieceColor) {
     val color: PieceColor = Color
-    private var board: ChessBoard? = null
+    private var board: Board? = null
 
-    fun setBoard(board: ChessBoard) {
+    fun setBoard(board: Board) {
         this.board = board
     }
 
@@ -17,7 +17,7 @@ abstract class Piece(Color: PieceColor) {
     fun isOpposite(other: Piece?) = (other?.color ?: false) != this.color
 
 
-    abstract fun getPossibleMovies(x: Int, y: Int): List<Pair<Int, Int>>
+    abstract fun getPossibleMoves(x: Int, y: Int): List<Pair<Int, Int>>
 
     abstract fun getPossibleCheckers(x: Int, y: Int, list: MutableList<Pair<Int,Int>>)
 

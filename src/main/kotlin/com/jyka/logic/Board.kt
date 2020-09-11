@@ -3,7 +3,7 @@ package com.jyka.logic
 import com.jyka.logic.pieces.Piece
 import com.jyka.logic.pieces.PieceColor
 
-class ChessBoard  {
+class Board  {
     private val data = List(8) { MutableList<Piece?>(8) { null } }
 
      operator fun get(x: Int, y: Int): Piece? = data[x][y]
@@ -26,9 +26,9 @@ class ChessBoard  {
 
 
 
-    fun getPossibleMovies(x: Int, y: Int): List<Pair<Int, Int>> {
+    fun getPossibleMoves(x: Int, y: Int): List<Pair<Int, Int>> {
 
-        return get(x,y)!!.getPossibleMovies(x,y)
+        return get(x,y)!!.getPossibleMoves(x,y)
     }
 
     fun getPossibleCheckers(x: Int, y: Int, list: MutableList<Pair<Int,Int>>) {

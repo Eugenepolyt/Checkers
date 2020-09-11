@@ -1,21 +1,21 @@
 package com.jyka.logic.pieces
 
-import com.jyka.logic.ChessBoard
+import com.jyka.logic.Board
 import junit.framework.TestCase
 import org.junit.Test
 
 
 class CheckerTest : TestCase() {
-    var desk = ChessBoard()
+    var desk = Board()
 
     @Test
     fun testGetPossibleMoves() {
         desk[0, 1] = Checker(PieceColor.BLACK)
-        assertEquals(listOf(1 to 2, 1 to 0), desk.getPossibleMovies(0, 1).drop(1))
+        assertEquals(listOf(1 to 2, 1 to 0), desk.getPossibleMoves(0, 1).drop(1))
         desk[0, 1] = Queen(PieceColor.BLACK)
-        assertEquals(listOf(1 to 2, 2 to 3, 3 to 4, 4 to 5, 5 to 6, 6 to 7, 1 to 0), desk.getPossibleMovies(0, 1).drop(1))
+        assertEquals(listOf(1 to 2, 2 to 3, 3 to 4, 4 to 5, 5 to 6, 6 to 7, 1 to 0), desk.getPossibleMoves(0, 1).drop(1))
         desk[0, 1] = Queen(PieceColor.BLACK)
-        assertEquals(listOf(1 to 2, 2 to 3, 3 to 4, 4 to 5, 5 to 6, 6 to 7, 1 to 0), desk.getPossibleMovies(0, 1).drop(1))
+        assertEquals(listOf(1 to 2, 2 to 3, 3 to 4, 4 to 5, 5 to 6, 6 to 7, 1 to 0), desk.getPossibleMoves(0, 1).drop(1))
     }
 
     @Test
@@ -24,13 +24,13 @@ class CheckerTest : TestCase() {
         desk[5, 2] = Checker(PieceColor.BLACK)
         desk[5, 4] = Checker(PieceColor.BLACK)
         desk[1, 6] = Checker(PieceColor.BLACK)
-        assertEquals(listOf(4 to 5, 4 to 1), desk.getPossibleMovies(6,3).drop(1))
+        assertEquals(listOf(4 to 5, 4 to 1), desk.getPossibleMoves(6,3).drop(1))
 
         desk[6, 3] = Queen(PieceColor.WHITE)
         desk[5, 2] = Queen(PieceColor.BLACK)
         desk[5, 4] = Queen(PieceColor.BLACK)
         desk[1, 6] = Queen(PieceColor.BLACK)
-        assertEquals(listOf(4 to 1, 3 to 0, 4 to 5, 3 to 6, 2 to 7), desk.getPossibleMovies(6,3).drop(1))
+        assertEquals(listOf(4 to 1, 3 to 0, 4 to 5, 3 to 6, 2 to 7), desk.getPossibleMoves(6,3).drop(1))
 
     }
 

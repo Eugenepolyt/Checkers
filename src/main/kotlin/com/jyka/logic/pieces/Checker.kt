@@ -4,7 +4,7 @@ package com.jyka.logic.pieces
 class Checker(Color: PieceColor) : Piece(Color) {
 
 
-    override fun getPossibleMovies(x: Int, y: Int): List<Pair<Int, Int>> {
+    override fun getPossibleMoves(x: Int, y: Int): List<Pair<Int, Int>> {
         val result = mutableListOf(x to y)
         val board = this.getBoard()!!
 
