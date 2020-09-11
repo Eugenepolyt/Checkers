@@ -22,7 +22,7 @@ class MainView : View("ChesterChess") {
 
     private val stack = MutableList(8) { MutableList(8) { Rectangle() to ImageView() } }
 
-    private var movies = mutableListOf<Pair<Int, Int>>()
+    private var moves = mutableListOf<Pair<Int, Int>>()
 
     private var shouldBeat = mutableListOf<Pair<Int, Int>>()
 
@@ -94,14 +94,14 @@ class MainView : View("ChesterChess") {
 
     private fun handleClick(row: Int, column: Int) {
 
-        if (pieceChosen && row to column in movies.drop(1)) {
-            val oldRow = movies.first().first
-            val oldColumn = movies.first().second
-            movies.removeAt(0)
+        if (pieceChosen && row to column in moves.drop(1)) {
+            val oldRow = moves.first().first
+            val oldColumn = moves.first().second
+            moves.removeAt(0)
             movePiece(oldRow, oldColumn, row, column)
             gameBoard.getPossibleCheckers(row,column,shouldBeat)
             disableHint()
-            movies.clear()
+            moves.clear()
             pieceChosen = false
             if (shouldBeat.isNotEmpty() && checkEat) {
                 checkEat = false
@@ -115,7 +115,7 @@ class MainView : View("ChesterChess") {
 
          if (pieceChosen) {
              disableHint()
-             movies.clear()
+             moves.clear()
              pieceChosen = false
              return
          }
@@ -131,12 +131,12 @@ class MainView : View("ChesterChess") {
             }
             if (shouldBeat.isNotEmpty() && row to column in shouldBeat) {
                 pieceChosen = true
-                movies = gameBoard.getPossibleMoves(row, column).toMutableList()
+                moves = gameBoard.getPossibleMoves(row, column).toMutableList()
                 checkEat = true
                 enableHint()
             } else if (shouldBeat.isEmpty()) {
                 pieceChosen = true
-                movies = gameBoard.getPossibleMoves(row, column).toMutableList()
+                moves = gameBoard.getPossibleMoves(row, column).toMutableList()
                 enableHint()
             }
             shouldBeat.clear()
@@ -244,7 +244,7 @@ class MainView : View("ChesterChess") {
     }
 
     private fun enableHint() {
-        for ((x, y) in movies.drop(1)) {
+        for ((x, y) in moves.drop(1)) {
             stack[x][y].first.apply {
                 fill = if ((x + y) % 2 == 0) {
                     Color.rgb(175, 237, 173)
@@ -256,7 +256,7 @@ class MainView : View("ChesterChess") {
     }
 
     private fun disableHint() {
-        for ((x, y) in movies) {
+        for ((x, y) in moves) {
             stack[x][y].first.apply {
                 fill = if ((x + y) % 2 == 0) {
                     Color.rgb(240, 217, 181)
