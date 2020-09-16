@@ -12,7 +12,7 @@ import tornadofx.*
 import kotlin.math.abs
 
 
-class MainView : View("ChesterChess") {
+class MainView : View("Checkers") {
 
     override val root = BorderPane()
 
